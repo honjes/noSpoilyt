@@ -18,7 +18,6 @@ const playerVars = ref<YTPlayerVars>(playerVarsDefault)
 const showIFrame = ref(true)
 
 const startVideos = [
-  "5phrOpK_OjA",
   "Ip0MJm5Ev9k",
   "HBW9pQJHg2o",
   "15-qNmbhTdg",
