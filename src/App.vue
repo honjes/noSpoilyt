@@ -17,21 +17,10 @@ const playerVarsDefault: YTPlayerVars = { start: 0, autoplay: 1, controls: 0, cc
 const playerVars = ref<YTPlayerVars>(playerVarsDefault)
 const showIFrame = ref(true)
 
-const startVideos = [
-  "Ip0MJm5Ev9k",
-  "HBW9pQJHg2o",
-  "15-qNmbhTdg",
-  "zrIJ3o3uf_E",
-  "2sJLktzReAQ",
-  "ITEEO-f60eM",
-  "5TlFAFlfK2o",
-  "b0hL4mJInm0",
-  "eqFooFrAOjw",
-  "qXStVuXNhb8",
-  "U6e19tSdJd8",
-]
+const startVideos = ["eqFooFrAOjw", "qXStVuXNhb8", "U6e19tSdJd8"]
 
-const { instance } = usePlayer(videoId, videoPlayer, { playerVars: playerVars.value })
+// https://youtu.be/5TlFAFlfK2o?t=2620
+/* const { instance } = usePlayer(videoId, videoPlayer, { playerVars: playerVars.value }) */
 
 function getVideoId(urL: string) {
   if (urL.startsWith("https://youtu.be")) {
@@ -64,7 +53,7 @@ function getVideoTime(urL: string) {
 }
 
 function addVideoId(e) {
-  const newVideoId = getVideoId(videoInput.value)
+  /* const newVideoId = getVideoId(videoInput.value)
   if (newVideoId === "") {
     return
   } else {
@@ -76,8 +65,8 @@ function addVideoId(e) {
       time = parseInt(videoTime)
     }
     instance.value?.loadVideoById({ ...playerVars.value, videoId: newVideoId, startSeconds: time })
-    return
-  }
+    return 
+  }*/
 }
 
 /* function addVideoToPlaylistId() {
@@ -100,17 +89,17 @@ function addVideoId(e) {
 } */
 
 function loadPlaylist() {
-  instance.value?.loadPlaylist({ playlist: startVideos, startSeconds: 0 })
+  // instance.value?.loadPlaylist({ playlist: startVideos, startSeconds: 0 })
 }
 
 function skipVideo(direction: "forward" | "backward", amount: number) {
-  const player = videoPlayer.value
+  /* const player = videoPlayer.value
   console.log("instance: ", instance)
   const currentTime = instance.value?.getCurrentTime()
   console.log("currentTime: ", currentTime)
   const newTime = Math.floor(direction === "forward" ? currentTime + amount : currentTime - amount)
   console.log("newTime: ", newTime)
-  instance.value?.seekTo(newTime, false)
+  instance.value?.seekTo(newTime, false) */
 }
 </script>
 
@@ -125,7 +114,16 @@ function skipVideo(direction: "forward" | "backward", amount: number) {
       <button @click="skipVideo('forward', 10 * 60)">+10m</button>
     </div>
     <div v-if="videoId !== '' && showIFrame">
-      <div ref="videoPlayer" />
+      <iframe
+        width="1903"
+        height="768"
+        src="https://www.youtube.com/embed/ITEEO-f60eM?start=3185&autoplay=1&cc_load_policy=1&vq=hd720&controls=1"
+        title="GEN vs. 100T - VCT Masters Shanghai - Playoffs - Map 1"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+      ></iframe>
     </div>
   </div>
 </template>
